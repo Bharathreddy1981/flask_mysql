@@ -1,0 +1,37 @@
+#inserting the values into the table of a database by reading the csv file and convert them into the string and inserting (i.e converting the csv file and inserting into the table).
+ 
+
+import pymysql
+import csv
+connect = pymysql.connect(
+            host="localhost",
+            user="root",
+            passwd = "Vangala@09",
+            db = "school"
+            )
+cursor = connect.cursor()
+with open('employeenames.csv', 'r') as csv_file:
+    csv_reader = csv.reader(csv_file, delimiter=',')
+    next(csv_reader)  # removes first line
+    st=[]
+    for i in csv_reader:
+        dict = {}
+        dict["id"] = i[0]
+        dict["employee_name"] = i[1]
+        dict["phone_number"] = i[2]
+        dict["email_id"] = i[3]
+        dict["city"] = i[4]
+        st.append(dict)
+
+    for k in st:
+        id=k["id"]
+        employeename=k["employee_name"]
+        phonenumber=k["phone_number"]
+        email=k["email_id"]
+        city=k["city"]
+
+        query = "insert into employeenames values('" + str(id) + "','" + str(employeename) + "','" + str(phonenumber) + "','" + str(email) + "','" + str(city) + "')"
+        cursor.execute(query)
+
+connect.commit()
+

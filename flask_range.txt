@@ -1,0 +1,32 @@
+#these api is used to find the datails present in a particular range or between the particular values using the GET method.
+
+import pymysql
+def salt(data):
+    k=data.split('-')
+    x=k[0]
+    z=k[1]
+
+    connect = pymysql.connect(
+                host="localhost",
+                user="root",
+                passwd = "Vangala@09",
+                 db = "school"
+    )
+    cursor= connect.cursor()
+
+    w = "select * from employeenames where id between "+ str(x) +" and "+ str(z) +""
+    #w="select * from employeenames where id >= '" + str(x) +"' and id <= '" + str(z) +"'"
+    print(w)
+    cursor.execute(w)
+    bha = cursor.fetchall()
+
+
+    li=[]
+    for i in bha:
+
+        m={"id":i[0],"employee_name":i[1],"phone_number":i[2],"email_id":i[3],"city":i[4]}
+
+        li.append(m)
+
+    return li
+
