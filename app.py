@@ -7,7 +7,11 @@ app = Flask(__name__)
 
 @app.route("/aws",methods=['GET'])
 def what():
-    d={"name":"bharath"}
+    d={"name":"Banuri.Bharath Reddy",
+       "college":"MALLAREDDY COLLEGE",
+       "town":"KAMAREDDY",
+       "SONGS":"EZINDAGI,SCENE"}
+    
     return jsonify(d)
 
 
