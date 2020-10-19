@@ -13,6 +13,6 @@ s3 = boto3.resource(
     aws_secret_access_key=ACCESS_SECRET_KEY,
     config=Config(signature_version="s3v4")
 )
-s3.Bucket(BUCKET_NAME).put_object(Key="bab.jpg", Body=data)
+s3.Bucket(BUCKET_NAME).put_object(Key="baba.jpg", Body=data)
 
 print("Done")
